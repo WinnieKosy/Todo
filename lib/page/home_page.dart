@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 SizedBox(
-                  height:350,
+                  height:400,
                   child: PageView.builder(
                     controller: PageController(viewportFraction:0.7),
                     onPageChanged: (index){

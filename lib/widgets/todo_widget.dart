@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'detailed/work_model.dart';
+
 
 class Todo{
   String? text;
@@ -20,6 +22,8 @@ class Todocard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context)=> DetailPage(todo: todo,)));
         // Navigator.push(context, MaterialPageRoute(builder: (context)=>const Login()));
       },
       child: Card(
@@ -28,7 +32,7 @@ class Todocard extends StatelessWidget {
             borderRadius: BorderRadius.circular(10)
         ),
         child: Container(
-          height: 350,
+          height: 400,
           decoration:BoxDecoration(
             color: Colors.white,
               borderRadius: BorderRadius.circular(10)
@@ -41,10 +45,13 @@ class Todocard extends StatelessWidget {
                 Row(
                   mainAxisAlignment:MainAxisAlignment.spaceBetween,
                   children: [
-                    CircleAvatar(
-                      //backgroundImage: NetworkImage(''),
-                        radius: 15,
-                        backgroundColor: todo.color
+                    Hero(
+                      tag: todo.title!,
+                      child: CircleAvatar(
+                        //backgroundImage: NetworkImage(''),
+                          radius: 15,
+                          backgroundColor: todo.color
+                      ),
                     ),
                     const Icon(Icons.more_vert,
                       color: Colors.grey,

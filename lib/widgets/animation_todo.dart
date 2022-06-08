@@ -21,25 +21,17 @@ class _TodoWidgetState extends State<TodoWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Container(
-        height: 350,
+        height: 400,
         width: double.maxFinite,
         decoration: BoxDecoration(
           color: Colors.transparent,
         ),
         child: Stack(
           children: [
-            GestureDetector(
-
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(
-                  builder: (context)=>DetailPage()));
-            },
-             child: Container(
-             height: 300,
-               width: 400,
-              child: Todocard(widget.todo))
-
-          )]
+            Container(
+            height: 400,
+              width: 400,
+             child: Todocard(widget.todo))]
         ),
       ),
     );

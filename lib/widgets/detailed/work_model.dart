@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../todo_widget.dart';
 class DetailPage extends StatefulWidget {
 
-
-  const DetailPage({Key? key}) : super(key: key);
+Todo todo;
+   DetailPage({required this.todo});
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -14,28 +16,37 @@ class _DetailPageState extends State<DetailPage> {
   final TextEditingController detailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child:const Icon(Icons.add),
+      ),
       appBar: AppBar(
-        title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Icon(Icons.arrow_back,color:Colors.grey),
-                Icon(Icons.more_vert, color:Colors.grey,)
-          ],),backgroundColor: Colors.white,
+        iconTheme:const IconThemeData(color: Colors.black),
+        backgroundColor: Colors.transparent,
+        actions:const [
+          SizedBox(width: 20,),
+          Icon(Icons.more_vert, color:Colors.grey,)
+        ],
       elevation: 0,),
       body: Container(
-        padding: const EdgeInsets.all(30),
+        padding: const EdgeInsets.only(left: 30,right: 30,top: 20),
         child: SingleChildScrollView(
           child: Column(crossAxisAlignment:CrossAxisAlignment .start,
             children:  [
-              const CircleAvatar(
-                backgroundImage: NetworkImage(''),
-                radius: 20,
-                backgroundColor: Colors.blue,
+              Hero(
+                tag: widget.todo.title!,
+                child: CircleAvatar(
+                 // backgroundImage: NetworkImage(''),
+                  radius: 20,
+                  backgroundColor:widget.todo.color,
+                ),
               ),
               const SizedBox(height: 10,),
               const Text('12 Tasks'),
              const SizedBox(height: 10,),
-              const Text('Work',style: TextStyle(
+              Text(widget.todo.title!,style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold
               ),),
@@ -74,8 +85,9 @@ class _DetailPageState extends State<DetailPage> {
                   Icon(Icons.check_box_outline_blank_sharp,color: Colors.grey,),
                   SizedBox(width: 10,),
                   Text('HTML/CSS Study'),
-                SizedBox(width: 300,),
-                Icon(Icons.timer, color: Colors.black26,)],
+                  Spacer(),
+                 Icon(Icons.timer, color: Colors.black26,)
+                ],
               ),
               const SizedBox(height: 10,),
               const Divider(
@@ -91,7 +103,7 @@ class _DetailPageState extends State<DetailPage> {
                   Icon(Icons.check_box_outline_blank_sharp,color: Colors.grey,),
                   SizedBox(width: 10,),
                   Text('Weekly Report'),
-                  SizedBox(width: 300,),]
+                  Spacer(),]
               ),
               const SizedBox(height: 10,),
               const Divider(
@@ -103,55 +115,14 @@ class _DetailPageState extends State<DetailPage> {
                   Icon(Icons.check_box_outline_blank_sharp,color: Colors.grey,),
                   SizedBox(width: 10,),
                   Text('Design Meeting'),
-                  SizedBox(width: 310,),
+                  Spacer(),
                   Icon(Icons.timer, color: Colors.black26,)],
               ),
               const SizedBox(height: 10,),
               const Divider(
                 thickness: 2,
               ),
-            Row(mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                FloatingActionButton(onPressed: (){
-                  showDialog(
-                    context: context,
-                    builder: (context)=>
-                    Dialog(
-                          child:Container(
-                            padding: EdgeInsets.all(8),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('What task are you planning to perform ?'),
-                                const SizedBox(height: 30,),
-                                TextField(
-                                  decoration: InputDecoration(hintText: 'Work'),
-                                  controller: titleController,
-                                ),
-                                SizedBox(height: 10,),
-                                TextField(
-                                  decoration: InputDecoration(hintText: 'Today'),
-                                  controller: detailController,
-                                ),
-                                SizedBox(height: 30,),
-                                FlatButton.icon(
-                                    icon: Icon(Icons.add),
-                                    label: Text('Add Todo'),
-                                    color: Colors.blue,
-                                    onPressed: (){})
-                              ],
-                            ),
-                          ) ,
-
-
-                    ),
-                  );
-                },
-                child: Icon(Icons.add),
-                  backgroundColor: Colors.blue,
-                ),
-              ],
-            )],
+           ],
           ),
         ),
       ),
