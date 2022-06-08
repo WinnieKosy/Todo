@@ -19,7 +19,38 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          showDialog(context: context,
+              builder: (contex)=>
+              Dialog(
+          child:Container(
+              padding: EdgeInsets.all(8),
+          child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('What task are you planning to perform?'),
+            const SizedBox(height: 20,),
+            TextField(
+          decoration: InputDecoration(hintText: 'Work'),
+          controller: titleController,
+          ),
+          const SizedBox(height: 10,),
+          TextField(
+          decoration: InputDecoration(hintText: 'Today'),
+          controller: detailController,
+          ),
+          const SizedBox(height: 10,),
+          FlatButton.icon(onPressed:(){}, icon: Icon(Icons.add),
+              label: Text('Add Todo', ),
+          color: Colors.blue,),
+
+          ],
+
+          ),
+
+          )
+          ));
+        },
         child:const Icon(Icons.add),
       ),
       appBar: AppBar(
